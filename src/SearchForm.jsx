@@ -45,7 +45,7 @@ function SearchForm() {
         setChoiseText(e.target.value);
         setIsUserInput(true); // שונה על ידי המשתמש
     }
-    const changeAddress = (address) =>{
+    const changeAddress = (address) =>{ //פונקציה שמשנה את הכתובת באינפוט
         setChoise(address);
         console.log(address)
         setChoiseText(address.display_name)
