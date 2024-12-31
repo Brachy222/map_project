@@ -41,7 +41,7 @@ function SearchForm() {
             console.error('There was a problem with the fetch operation:', err);
         }
     }
-    const handleInputChange = (e) => {
+    const handleInputChange = (e) => { // פונקצית מעבר שמשנה את הטקסט באינפוט החיפוש
         setChoiseText(e.target.value);
         setIsUserInput(true); // שונה על ידי המשתמש
     }
