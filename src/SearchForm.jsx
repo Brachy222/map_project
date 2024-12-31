@@ -46,11 +46,11 @@ function SearchForm() {
         setIsUserInput(true); // שונה על ידי המשתמש
     }
     const changeAddress = (address) =>{ //פונקציה שמשנה את הכתובת באינפוט
-        setChoise(address);
+        setChoise(address); 
         console.log(address)
         setChoiseText(address.display_name)
         setIsUserInput(false);
-        setAddress([]);
+        setAddress([]); // מאפסים את מערך הכתובות שהתקבלו
     }
     return ( 
         <>
