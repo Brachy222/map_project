@@ -1,0 +1,39 @@
+#searchInMap, #checks{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(223, 220, 220);
+    padding: 10px;
+    margin: 20px;
+    width: 30vw;
+}
+/* #checks{
+    align-items: flex-start;
+} */
+#searchInMap input{
+    margin: 10px;
+    padding: 10px;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    direction: rtl;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.optionsAdresses, #addressParrent input{
+    background-color: white;
+    border: 1px solid;
+    /* margin: 5px; */
+    padding: 5px;
+    font-size: small;
+    width: 100%;
+}
+#addressParrent input{
+    margin-bottom: 0;
+    left: 10px;
+}
+#addressParrent{
+    width: 90%;
+}
