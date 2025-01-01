@@ -4,20 +4,21 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import './SearchForm.css'
 import {useForm} from 'react-hook-form'
-// import { MapContainer, TileLayer, useMap} from 'https://cdn.esm.sh/react-leaflet'
 import { MapContainer, TileLayer, useMap, Marker, Popup} from 'react-leaflet'
 import { map } from 'leaflet'
-
+import "leaflet/dist/leaflet.css"
+import MyMapContainer from './MyMapContainer'
 
 
 function SearchForm() {
+    const [position, setPosition] = useState([31.7788242,35.2257626])
 
     let {register, handleSubmit, reset, formState:{errors, isValid}} = useForm({
         mode: "all"
     });
     
     function save(){}
-    let [addresses, setAddress] = useState([]);
+    let [addresses, setAddresses] = useState([]);
     let [choise, setChoise] = useState();
     let [choiseText, setChoiseText] = useState();
     let [isUserInput, setIsUserInput] = useState(false);
@@ -33,7 +34,7 @@ function SearchForm() {
                 throw new Error('Network response was not ok');
             }
             let data = await response.json()
-            setAddress(data);
+            setAddresses(data);
             console.log(JSON.stringify(data, null, 2));
             // createDivsWithAddress(adresses);
         }
@@ -50,8 +51,13 @@ function SearchForm() {
         console.log(address)
         setChoiseText(address.display_name)
         setIsUserInput(false);
-        setAddress([]); // מאפסים את מערך הכתובות שהתקבלו
+        setPosition([+address.lat, +address.lon]); 
+        console.log( +address.lat, +address.lon, typeof +address.lat)
+        setAddresses([]); // מאפסים את מערך הכתובות שהתקבלו
+        
     }
+
+    
     return ( 
         <>
          <form id="searchInMap" noValidate onSubmit={handleSubmit(save)}>
@@ -121,17 +127,10 @@ function SearchForm() {
             </select> */}
             <input type="submit" disabled={!isValid} value={"חפש"}/>
         </form>
-        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
-            <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={[51.505, -0.09]}>
-                <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker>   
-        </MapContainer>
-        </>
+            
+         <MyMapContainer position={position}/>
+            </>
+        
      );
 }
 
